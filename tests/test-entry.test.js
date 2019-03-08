@@ -3,7 +3,13 @@ const sharedTests = require('./shared-tests')
 const enviroments = require('./enviroments')
 const {exec} = require('child_process')
 
+const {killAll} = require('../build-env')
+
 describe('fixtures collect expected observations', () => {
+
+	after(() => {
+		killAll()
+	})
 
 	const dockerEnvs = enviroments()
 	const getEnv = (key) => dockerEnvs.then((envs) => envs[key])
