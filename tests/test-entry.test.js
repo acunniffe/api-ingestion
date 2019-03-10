@@ -17,6 +17,10 @@ describe('fixtures collect expected observations', () => {
 	describe('node-express', () => {
 		sharedTests.sharedObservationsTest(getEnv('node-express'))
 	})
+
+	describe('scala-akka_http', () => {
+		sharedTests.sharedObservationsTest(getEnv('scala-akka_http'))
+	})
 	// sharedTests.sharedObservationsTest(getEnv('scala-akka-http'))
 	// sharedTests.sharedObservationsTest(getEnv('ruby-rails'))
 	// sharedTests.sharedObservationsTest(getEnv('python-flask'))
