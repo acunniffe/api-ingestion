@@ -16,6 +16,10 @@ function buildEnv(name, dir, testPort) {
 		shell.chmod('+x', startScript);
 		const subprocess = spawn('sh', ['start.sh'], {cwd, env: {...process.env, OPTIC_SERVER_LISTENING: true}})
 
+		subprocess.on('data', (d) => {
+			console.log(d)
+		})
+
 		subprocess.on('error', (err) => {
 			console.log('Failed to start subprocess.');
 			console.log(err);

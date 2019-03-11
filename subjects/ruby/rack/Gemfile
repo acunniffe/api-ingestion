@@ -1,0 +1,7 @@
+source 'https://rubygems.org'
+
+ruby "2.3.7"
+
+gem "rack"
+gem "thin"
+gem 'optic-middleware', '~> 0.1.3'

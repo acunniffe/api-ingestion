@@ -14,12 +14,16 @@ describe('fixtures collect expected observations', () => {
 	const dockerEnvs = enviroments()
 	const getEnv = (key) => dockerEnvs.then((envs) => envs[key])
 
-	describe('node-express', () => {
-		sharedTests.sharedObservationsTest(getEnv('node-express'))
-	})
+	// describe('scala-akka_http', () => {
+	// 	sharedTests.sharedObservationsTest(getEnv('scala-akka_http'))
+	// })
+	//
+	// describe('node-express', () => {
+	// 	sharedTests.sharedObservationsTest(getEnv('node-express'))
+	// })
 
-	describe('scala-akka_http', () => {
-		sharedTests.sharedObservationsTest(getEnv('scala-akka_http'))
+	describe('ruby-rack', () => {
+		sharedTests.sharedObservationsTest(getEnv('ruby-rack'))
 	})
 	// sharedTests.sharedObservationsTest(getEnv('scala-akka-http'))
 	// sharedTests.sharedObservationsTest(getEnv('ruby-rails'))

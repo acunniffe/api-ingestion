@@ -5,14 +5,16 @@ const killPort = require('kill-port')
 const ports = [
 	50001,
 	50002,
+	50003,
 ]
 
 module.exports = function setupEnvs() {
 	return new Promise((resolve, reject) => {
 		Promise.all(ports.map(p => killPort(p))).then(() => {
 			resolve({
-				'node-express': buildEnv('node-express', '/subjects/node/express', ports[0]),
-				'scala-akka_http': buildEnv('scala-akka_http', '/subjects/scala/akka_http', ports[1])
+				// 'node-express': buildEnv('node-express', '/subjects/node/express', ports[0]),
+				// 'scala-akka_http': buildEnv('scala-akka_http', '/subjects/scala/akka_http', ports[1]),
+				'ruby-rack': buildEnv('ruby-rack', '/subjects/ruby/rack', ports[2])
 			})
 		})
 
