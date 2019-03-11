@@ -4,13 +4,12 @@
   "description": "",
   "main": "echo-app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node echo-app.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@useoptic/document-express": "0.1.5",
+    "@useoptic/document-express": "0.2.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "request": "^2.88.0"

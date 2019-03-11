@@ -5,7 +5,7 @@ name := "document-akka-http"
 
 organization := "com.useoptic"
 
-version := "0.1.0"
+version := "0.2.0"
 
 scalaVersion := "2.12.8"
 
@@ -52,3 +52,13 @@ publishMavenStyle := true
 licenses := Seq("MIT" -> url("https://opensource.org/licenses/MIT"))
 homepage := Some(url("https://useoptic.com"))
 credentials += Credentials(Path.userHome / ".sbt" / "sonatype_credential")
+scmInfo := Some(
+  ScmInfo(
+    url("https://github.com/opticdev/api-ingestion"),
+    "scm:git@github.com:opticdev/api-ingestion.git"
+  )
+)
+
+developers := List(
+  Developer(id="acuniffe", name="Aidan Cunniffe", email="acunniffe@gmail.com", url=url("http://github.com/acunniffe"))
+)

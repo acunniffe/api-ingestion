@@ -13,7 +13,10 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import scala.util.Try
 
 object Document {
-  //If 'optic-watching' enviroment flag is set
+
+  val host = sys.env.getOrElse("OPTIC_SERVER_HOST", "localhost")
+
+  //If 'optic-watching' environment flag is set
   //this method wraps a 'Route' instance with a logging directive that forwards data to Optic
   def withOptic(route: akka.http.scaladsl.server.Route): Route = {
     import akka.http.scaladsl.server.directives.{DebuggingDirectives, LoggingMagnet}
@@ -24,11 +27,11 @@ object Document {
 
   //Standard Configuration for the Optic Proxy Server
   def forwardToRequestLogging(request: HttpRequest) = {
-    val a = Try(request.withUri(request.uri.withHost("localhost").withPort(30334).withScheme("http")))
+    val a = Try(request.withUri(request.uri.withHost(host).withPort(30334).withScheme("http")))
     a.get
   }
 
-  def forwardToResponseLogging(request: HttpRequest) = request.withUri(request.uri.withHost("localhost").withPort(30335).withScheme("http"))
+  def forwardToResponseLogging(request: HttpRequest) = request.withUri(request.uri.withHost(host).withPort(30335).withScheme("http"))
 
   private implicit val testActorSystem = ActorSystem("optic-proxy-routing")
   private implicit val materializer = ActorMaterializer()
