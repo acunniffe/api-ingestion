@@ -10,7 +10,7 @@ import akka.stream.scaladsl.Sink
 
 import scala.concurrent.Future
 import scala.util.Try
-import echo.Document.withOptic
+import com.useoptic.akka_http.scaladsl.Document.withOptic
 
 object EchoServer extends App {
 
@@ -24,6 +24,6 @@ object EchoServer extends App {
     }
   }
 
-  val bindingFuture = Http().bindAndHandle(withOptic(route), "localhost", 50002)
+  val bindingFuture = Http().bindAndHandle(withOptic(route), "localhost", 4000)
 
 }

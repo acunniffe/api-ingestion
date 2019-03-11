@@ -6,7 +6,7 @@ module.exports = function setupEnvs() {
 		exec('docker stop $(docker ps -a -q)', (err, stdout) => {
 			resolve({
 				'node-express': buildEnv('node-express', '/subjects/node/express', 50001),
-				// 'scala-akka_http': buildEnv('scala-akka_http', '/subjects/scala/akka_http', ports[1]),
+				'scala-akka_http': buildEnv('scala-akka_http', '/subjects/scala/akka_http', 50002),
 				'ruby-rack': buildEnv('ruby-rack', '/subjects/ruby/rack',50003)
 			})
 		})

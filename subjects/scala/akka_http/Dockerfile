@@ -1,0 +1,8 @@
+FROM scala/sbt
+WORKDIR .
+COPY . .
+
+ENV OPTIC_SERVER_LISTENING=TRUE
+ENV OPTIC_SERVER_HOST=testhost
+CMD sbt run
+
