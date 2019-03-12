@@ -2,4 +2,4 @@ language: node_js
 services:
   - docker
 script:
-  - npm run docker-tests
+  - npm run test

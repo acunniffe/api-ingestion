@@ -1,7 +1,7 @@
 const assert = require('assert')
 const sharedTests = require('./shared-tests')
 const enviroments = require('./enviroments')
-const {exec} = require('child_process')
+
 
 describe('fixtures collect expected observations', () => {
 

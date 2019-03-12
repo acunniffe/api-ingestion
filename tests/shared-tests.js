@@ -23,7 +23,7 @@ exports.sharedObservationsTest = (p) => {
 		done()
 	}))
 
-	describe.only('logging service handles request method', () => {
+	describe('logging service handles request method', () => {
 
 		const testMethod = (method, done, r) => {
 			session((done1) => r('/test-endpoint', {method: method}, (err, res) => {
