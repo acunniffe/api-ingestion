@@ -8,7 +8,9 @@ exports.sharedObservationsTest = (p) => {
 	const assertValidEnv = (callback) => {
 		p.then((env) => {
 			assert(true)
-			callback(request.defaults({baseUrl: `http://localhost:${env.testPort}/`}), env)
+			callback(request.defaults({
+				baseUrl: `http://localhost:${env.testPort}/`,
+			}), env)
 		})
 		p.catch(() => {
 			assert(false)
@@ -21,10 +23,14 @@ exports.sharedObservationsTest = (p) => {
 		done()
 	}))
 
-	describe('logging service handles request method', () => {
+	describe.only('logging service handles request method', () => {
 
 		const testMethod = (method, done, r) => {
-			session((done1) => r('/test-endpoint', {method: method}, done1), (samples) => {
+			session((done1) => r('/test-endpoint', {method: method}, (err, res) => {
+				// console.log(err)
+				// console.log(res)
+				done1()
+			}), (samples) => {
 				const {request, response} = samples[0]
 				assert(request.method === method.toUpperCase())
 				done()

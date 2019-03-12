@@ -19,8 +19,8 @@ function buildEnv(name, dir, testPort) {
 	return new Promise((resolve, reject) => {
 		exec(`docker build . -t ${containerName}`, {cwd}, (err, stdout) => {
 
-			console.log(err)
-			console.log(stdout)
+			// console.log(err)
+			// console.log(stdout)
 
 			exec(`docker run -p ${testPort}:4000 --add-host=testhost:${hostIp} -d ${containerName}`, {cwd}, (err, stdout) => {
 
@@ -28,7 +28,7 @@ function buildEnv(name, dir, testPort) {
 					.then((open) => {
 						if (open) {
 							// runningEnvs.push(subprocess)
-							setTimeout(() => resolve({name, dir, testPort}), 3000)
+							setTimeout(() => resolve({name, dir, testPort}), 2000)
 						} else {
 							reject('port did not open')
 						}
@@ -42,8 +42,4 @@ function buildEnv(name, dir, testPort) {
 	})
 }
 
-function killAll() {
-	runningEnvs.forEach(proc => proc.kill('SIGINT'))
-}
-
-module.exports = {buildEnv, killAll}
+module.exports = {buildEnv}
