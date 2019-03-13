@@ -9,7 +9,9 @@ exports.sharedObservationsTest = (p) => {
 		p.then((env) => {
 			assert(true)
 			callback(request.defaults({
-				baseUrl: `http://localhost:${env.testPort}/`,
+				baseUrl: `http://localhost:${env.testPort}`,
+				strictSSL: false,
+				timeout: 100000,
 			}), env)
 		})
 		p.catch(() => {
@@ -26,11 +28,7 @@ exports.sharedObservationsTest = (p) => {
 	describe('logging service handles request method', () => {
 
 		const testMethod = (method, done, r) => {
-			session((done1) => r('/test-endpoint', {method: method}, (err, res) => {
-				// console.log(err)
-				// console.log(res)
-				done1()
-			}), (samples) => {
+			session((done1) => r('/test-endpoint', {method: method}, done1), (samples) => {
 				const {request, response} = samples[0]
 				assert(request.method === method.toUpperCase())
 				done()
@@ -91,7 +89,7 @@ exports.sharedObservationsTest = (p) => {
 
 	describe('logging service handles request body', () => {
 		it('empty when not set', (done) => assertValidEnv((r) => {
-			session((done1) => r.get('/test-endpoint', {}, done1), (samples) => {
+			session((done1) => r.post('/test-endpoint', {}, done1), (samples) => {
 				const {request, response} = samples[0]
 				assert(Object.entries(request.body).length === 0)
 				done()
@@ -99,7 +97,7 @@ exports.sharedObservationsTest = (p) => {
 		}))
 
 		it('works when short json', (done) => assertValidEnv((r) => {
-			session((done1) => r.get('/test-endpoint', {json: simpleJson}, done1), (samples) => {
+			session((done1) => r.post('/test-endpoint', {json: simpleJson, headers: {'Content-Type': 'application/json'}}, done1), (samples) => {
 				const {request, response} = samples[0]
 				assert.deepEqual(request.body, simpleJson)
 				done()
@@ -107,7 +105,7 @@ exports.sharedObservationsTest = (p) => {
 		}))
 
 		it('works when long json', (done) => assertValidEnv((r) => {
-			session((done1) => r.get('/test-endpoint', {json: longJson}, done1), (samples) => {
+			session((done1) => r.post('/test-endpoint', {json: longJson, headers: {'Content-Type': 'application/json'}}, done1), (samples) => {
 				const {request, response} = samples[0]
 				assert.deepEqual(request.body, longJson)
 				done()
@@ -116,7 +114,7 @@ exports.sharedObservationsTest = (p) => {
 
 		it('works when text', (done) => assertValidEnv((r) => {
 			const text = 'Hello world \n I am Optic'
-			session((done1) => r.get('/test-endpoint', {
+			session((done1) => r.post('/test-endpoint', {
 				body: text,
 				headers: {'content-type': 'text/plain'}
 			}, done1), (samples) => {
@@ -160,7 +158,7 @@ exports.sharedObservationsTest = (p) => {
 
 	describe('logging service handles response body', () => {
 		it('empty when not set', (done) => assertValidEnv((r) => {
-			session((done1) => r.get('/test-endpoint', {}, done1), (samples) => {
+			session((done1) => r.post('/test-endpoint', {}, done1), (samples) => {
 				const {request, response} = samples[0]
 				assert(Object.entries(response.body).length === 0)
 				done()
@@ -168,7 +166,7 @@ exports.sharedObservationsTest = (p) => {
 		}))
 
 		it('works when short json', (done) => assertValidEnv((r) => {
-			session((done1) => r.get('/test-endpoint', {json: simpleJson}, done1), (samples) => {
+			session((done1) => r.post('/test-endpoint', {json: simpleJson}, done1), (samples) => {
 				const {request, response} = samples[0]
 				assert.deepEqual(response.body, simpleJson)
 				done()
@@ -176,7 +174,7 @@ exports.sharedObservationsTest = (p) => {
 		}))
 
 		it('works when long json', (done) => assertValidEnv((r) => {
-			session((done1) => r.get('/test-endpoint', {json: longJson}, done1), (samples) => {
+			session((done1) => r.post('/test-endpoint', {json: longJson}, done1), (samples) => {
 				const {request, response} = samples[0]
 				assert.deepEqual(response.body, longJson)
 				done()

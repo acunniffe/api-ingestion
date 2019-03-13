@@ -4,6 +4,6 @@ COPY . .
 
 ENV OPTIC_SERVER_LISTENING=TRUE
 ENV OPTIC_SERVER_HOST=testhost
-RUN sbt package
-CMD sbt run
+RUN sbt assembly
+CMD java -jar target/scala-2.12/akka_http-assembly-0.1.jar
 

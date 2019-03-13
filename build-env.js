@@ -16,26 +16,27 @@ function buildEnv(name, dir, testPort) {
 	const dockerfile = path.join(__dirname, dir, 'Dockerfile')
 	const containerName = `test/${name}`
 
+	// console.log('Building docker for '+ containerName)
 	return new Promise((resolve, reject) => {
 		exec(`docker build . -t ${containerName}`, {cwd}, (err, stdout) => {
 
 			// console.log(err)
 			// console.log(stdout)
 
-			exec(`docker run -p ${testPort}:4000 --add-host=testhost:${hostIp} -d ${containerName}`, {cwd}, (err, stdout) => {
+			// if (!err) {console.log('Starting docker for '+ containerName)}
 
+			exec(`docker run -p ${testPort}:4000 --add-host=testhost:${hostIp} -d ${containerName}`, {cwd}, (err, stdout) => {
+				// console.log(stdout)
 				waitPort({host: 'localhost', port: testPort, output: 'silent'})
 					.then((open) => {
 						if (open) {
-							// runningEnvs.push(subprocess)
-							setTimeout(() => resolve({name, dir, testPort}), 2000)
+							setTimeout(() => resolve({name, dir, testPort}), 5000)
 						} else {
 							reject('port did not open')
 						}
 					})
 
 			})
-
 
 		})
 

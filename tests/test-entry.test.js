@@ -2,7 +2,6 @@ const assert = require('assert')
 const sharedTests = require('./shared-tests')
 const enviroments = require('./enviroments')
 
-
 describe('fixtures collect expected observations', () => {
 
 
