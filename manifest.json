@@ -1,0 +1,32 @@
+{
+  "node-express": {
+    "name": "Express JS",
+    "sdk": "sdks/node-express",
+    "documentation": "sdks/node-express/Readme.md",
+    "test": "subjects/node/express",
+    "status": "production",
+    "current-version": "0.2.0",
+    "link": "https://www.npmjs.com/package/@useoptic/document-express",
+    "supported-targets": "4.x"
+  },
+  "ruby-rails": {
+    "name": "Ruby Rails",
+    "sdk": "sdks/ruby-rack",
+    "documentation": "sdks/ruby-rack/Readme.md",
+    "test": "subjects/ruby/rails",
+    "status": "production",
+    "current-version": "0.2.0",
+    "link": "https://rubygems.org/gems/optic-middleware",
+    "supported-targets": ">5.x"
+  },
+  "scala-akka-http": {
+    "name": "Akka HTTP Scala",
+    "sdk": "sdks/akka-http",
+    "documentation": "sdks/akka-http/Readme.md",
+    "test": "subjects/scala/akka-http",
+    "status": "production",
+    "current-version": "0.2.0",
+    "link": "https://mvnrepository.com/artifact/com.useoptic/document-akka-http_2.12/0.2.0",
+    "supported-targets": "10.x"
+  }
+}
