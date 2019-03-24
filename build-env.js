@@ -1,7 +1,7 @@
 const shell = require('shelljs')
 const path = require('path')
 const waitPort = require('wait-port');
-const {spawn, exec} = require('child_process')
+const {exec} = require('child_process')
 const ip = require('ip')
 
 const runningEnvs = []
@@ -18,12 +18,11 @@ function buildEnv(name, dir, testPort) {
 
 	// console.log('Building docker for '+ containerName)
 	return new Promise((resolve, reject) => {
-		exec(`docker build . -t ${containerName}`, {cwd}, (err, stdout) => {
+		exec(`docker build . -t "${containerName}"`, {cwd}, (err, stdout) => {
+			// console.log(err)
+			// console.log(stdout)
 
-			console.log(err)
-			console.log(stdout)
-
-			if (!err) {console.log('Starting docker for '+ containerName)}
+			// if (!err) {console.log('Starting docker for '+ containerName)}
 
 			exec(`docker run -p ${testPort}:4000 --add-host=testhost:${hostIp} -d ${containerName}`, {cwd}, (err, stdout) => {
 				// console.log(stdout)

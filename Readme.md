@@ -1,45 +1,49 @@
 # API Ingestion End-End Tests [![Build Status](https://travis-ci.org/opticdev/api-ingestion-tests.svg?branch=master)](https://travis-ci.org/opticdev/api-ingestion-tests)
 
-___
-Config:
-  @useoptic/core": "^0.1.3-alpha.17
-  
-  **Documenting SDKs**
-  document-express: 0.1.5
-  
-___
+## Running Tests
+Test all SDKs  `npm run test`
+
+Test single SDK `npm --sdk_id=akka-http run testOnly`
 
 
-```npm run docker-tests```
+## Terms
+* Documenting SDKs - Optic's SDKs that log the request/responses in your API tests. These are used to infer the surface area and shape of an API. Each SDK is stored in `sdks/`
+* Subjects - Test environments for each SDK that implement an echo server.
+* Shared tests - the end-end tests that runs for each of the subjects `tests/shared-tests.js`. These shared test cases validate that each Optic SDK accurately logs the request/response to Optic. 
+* Manifest - The registry of all the documenting APIs Optic supports. Manifest entries look like this:
+```json
+  "node-express": {
+    "name": "Express JS",
+    "sdk": "sdks/node-express",
+    "documentation": "sdks/node-express/Readme.md",
+    "test": "subjects/node/express", 
+    "status": "production", //development or production (development is ignored by docs.useoptic.com)
+    "current-version": "0.2.0",
+    "link": "https://www.npmjs.com/package/@useoptic/document-express",
+    "supported-targets": "4.x",
+    "author": "opticdev" //author's github ID
+  }
+```
 
-## Overview
-* Documenting SDKs - Optic's SDKs that log the request/responses in your API tests. These are used to infer the shape and surface area of the API 
-* subject/ - test environments for each of the Documenting SDKs. Each test environment is an echo server. Request Headers + Body are echoed 1:1 in the response. The status code of the response is controlled by a header called `return-status`.  
-* tests/shared-tests.js - the end-end tests that runs for each of the subjects. The same suite is used to validate the same behavior across all Documenting SDKs
+
+## SDK Structure
+- A library implements Optic's logging protocol in the context of the API Framework targeted.  
+- A Readme explaining how to use the the SDK in your code. 
+- (Not Included) Keys required to publish the library. These will be generated and securely stored by Optic
+
+## Subjects Structure
+-  `Dockerfile` - in root directory.
+    - Build a docker image capable of running the echo server
+    - Includes a `CMD` to start the echo server on port 4000
+-  The echo server to be copied into the Docker Image
+    - All requests accepted by any path 
+    - Returns request headers as response headers 
+    - Returns request body as response body
+    - Status code defaults to 200, if a header named `return-status` is passed, the integer value of it will be the status code of the response
 
 ### Test Lifecycle  
-1) Docker builds an image with all the dependencies needed to run the subject environments
+1) Docker image with all the dependencies needed to run the subject environments
 2) The tests are started in the container by running `npm run tests`
 3) Each subject environment is built and the echo server is bound to a predefined port
 4) The shared tests run sequentially over each test environment 
 5) Process exits with 0 if all tests pass, non-zero if failed. 
-
-
-## Requirements for adding a new Subject
-* Implement an echo server for the API Framework you wish to test. Add the Documenting SDK to the server before binding to a port. 
-* Add language/runtime dependencies to `Dockerfile` ie install ruby, sbt, go, etc. 
-* Add a `start.sh` to the root directory of your echo server. This script should setup the test environment and then start the server.  
-* Add an entry to `tests/enviroments` 
-```javascript
-'my-env': buildEnv('my-env', '/subjects/lang/framework', 50001 /* unique port */)
-```
-* Add your subject to `test-entry.test.js`
-```javascript
-	describe('node-express', () => {
-		sharedTests.sharedObservationsTest(getEnv('node-express'))
-	})
-```
-
-## Running Tests
-Test All `npm run test`
-Test Single Suite `npm --sdk_id=akka-http run testOnly`

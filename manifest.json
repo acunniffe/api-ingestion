@@ -7,7 +7,8 @@
     "status": "production",
     "current-version": "0.2.0",
     "link": "https://www.npmjs.com/package/@useoptic/document-express",
-    "supported-targets": "4.x"
+    "supported-targets": "4.x",
+    "author": "opticdev"
   },
   "ruby-rails": {
     "name": "Ruby Rails",
@@ -17,7 +18,8 @@
     "status": "production",
     "current-version": "0.2.0",
     "link": "https://rubygems.org/gems/optic-middleware",
-    "supported-targets": ">5.x"
+    "supported-targets": ">5.x",
+    "author": "opticdev"
   },
   "scala-akka-http": {
     "name": "Akka HTTP Scala",
@@ -27,6 +29,7 @@
     "status": "production",
     "current-version": "0.2.0",
     "link": "https://mvnrepository.com/artifact/com.useoptic/document-akka-http_2.12/0.2.0",
-    "supported-targets": "10.x"
+    "supported-targets": "10.x",
+    "author": "opticdev"
   }
 }
