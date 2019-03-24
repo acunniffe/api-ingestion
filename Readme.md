@@ -40,3 +40,6 @@ ___
 	})
 ```
 
+## Running Tests
+Test All `npm run test`
+Test Single Suite `npm --sdk_id=akka-http run testOnly`

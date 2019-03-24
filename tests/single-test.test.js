@@ -5,7 +5,10 @@ const manifest = require('../manifest')
 const dockerEnvs = enviroments();
 const getEnv = (key) => dockerEnvs.then((envs) => envs[key]())
 
-Object.keys(manifest).forEach(env => {
+const sdkId = process.env.npm_config_sdk_id;
+console.log('Testing '+ sdkId);
+
+([sdkId]).forEach(env => {
 	describe(env, function() {
 		sharedTests.sharedObservationsTest(getEnv(env))
 	})

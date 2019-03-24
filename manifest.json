@@ -22,8 +22,8 @@
   "scala-akka-http": {
     "name": "Akka HTTP Scala",
     "sdk": "sdks/akka-http",
-    "documentation": "sdks/akka-http/Readme.md",
-    "test": "subjects/scala/akka-http",
+    "documentation": "sdks/akka_http/Readme.md",
+    "test": "subjects/scala/akka_http",
     "status": "production",
     "current-version": "0.2.0",
     "link": "https://mvnrepository.com/artifact/com.useoptic/document-akka-http_2.12/0.2.0",
