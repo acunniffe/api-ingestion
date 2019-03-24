@@ -1,5 +1,6 @@
 const assert = require('assert');
-const sharedTests = require('./shared-tests');
+const {sharedObservationsTest} = require('./shared-tests');
+const {echoServerImplementationTests} = require('./shared-echo-server-tests');
 const enviroments = require('./enviroments');
 const manifest = require('../manifest')
 const dockerEnvs = enviroments();
@@ -10,7 +11,9 @@ if (sdkId) {
 	console.log('Testing ' + sdkId);
 	([sdkId]).forEach(env => {
 		describe(env, function () {
-			sharedTests.sharedObservationsTest(getEnv(env))
+			const testEnv = getEnv(env)
+			// sharedObservationsTest(testEnv)
+			echoServerImplementationTests(testEnv)
 		})
 	})
 }
