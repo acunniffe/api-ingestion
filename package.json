@@ -4,8 +4,8 @@
   "description": "",
   "main": "tests/test-entry.test.js",
   "scripts": {
-    "test": "find ./tests -name '*.test.js' | xargs mocha -R spec --timeout 300000 --exit",
-    "testOnly": "find ./tests -name 'single-test.test.js' | xargs mocha -R spec --timeout 300000 --exit"
+    "test": "find ./tests -name '*.test.js' | xargs mocha -R spec --timeout 30000 --exit",
+    "testOnly": "find ./tests -name 'single-test.test.js' | xargs mocha -R spec --timeout 30000 --exit"
   },
   "author": "",
   "license": "MIT",

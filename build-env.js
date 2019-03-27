@@ -15,7 +15,7 @@ function buildEnv(name, dir, testPort) {
 	const cwd = path.join(__dirname, dir)
 	const dockerfile = path.join(__dirname, dir, 'Dockerfile')
 	const containerName = `test/${name}`
-
+	// console.log(cwd)
 	// console.log('Building docker for '+ containerName)
 	return new Promise((resolve, reject) => {
 		exec(`docker build . -t "${containerName}"`, {cwd}, (err, stdout) => {

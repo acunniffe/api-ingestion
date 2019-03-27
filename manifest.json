@@ -31,5 +31,16 @@
     "link": "https://mvnrepository.com/artifact/com.useoptic/document-akka-http_2.12/0.2.0",
     "supported-targets": "10.x",
     "author": "opticdev"
+  },
+  "python-flask": {
+    "name": "Flask",
+    "sdk": "sdks/python",
+    "documentation": "sdks/akka-http/Readme.md",
+    "test": "subjects/python/flask",
+    "status": "production",
+    "current-version": "0.1.0",
+    "link": "https://mvnrepository.com/artifact/com.useoptic/document-akka-http_2.12/0.2.0",
+    "supported-targets": "10.x",
+    "author": "opticdev"
   }
 }

@@ -1,5 +1,6 @@
 const LoggingServer = require('@useoptic/core/build/src/logging-server').LoggingServer
 const {exec} = require('child_process')
+
 module.exports = (block, callback) => {
 
 	const loggingServer = new LoggingServer()
