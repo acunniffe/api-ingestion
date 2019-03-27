@@ -13,7 +13,7 @@
   "ruby-rails": {
     "name": "Ruby Rails",
     "sdk": "sdks/ruby-rack",
-    "documentation": "sdks/ruby-rack/Readme.md",
+    "documentation": "sdks/ruby-rack/README.md",
     "test": "subjects/ruby/rails",
     "status": "production",
     "current-version": "0.2.0",
