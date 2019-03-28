@@ -25,7 +25,7 @@ function buildEnv(name, dir, testPort) {
 			// if (!err) {console.log('Starting docker for '+ containerName)}
 
 			exec(`docker run -p ${testPort}:4000 --add-host=testhost:${hostIp} -d ${containerName}`, {cwd}, (err, stdout) => {
-				// console.log(stdout)
+				// console.log('Container ID ' + stdout)
 				waitPort({host: 'localhost', port: testPort, output: 'silent'})
 					.then((open) => {
 						if (open) {

@@ -1,9 +1,13 @@
-from flask import Flask, jsonify, request, Response
+from flask import Flask, jsonify, request, Response, g
 from functools import wraps
 from werkzeug.routing import Rule
 from optparse import OptionParser
 from pprint import pprint
 import time
+import http
+import os
+
+from optic import OpticDocumentingMiddleware
 
 VERBOSE = 'verbose'
 BASIC_AUTH = 'basic_auth'
@@ -97,10 +101,9 @@ def main():
         config[AUTH_PASSWORD] = password
 
     app.debug = options.debug
-    app.run(port=int(options.port), host=options.host)
     if 'OPTIC_SERVER_LISTENING' in os.environ:
         OpticDocumentingMiddleware(app)
-
+    app.run(port=int(options.port), host=options.host)
 
 if __name__ == '__main__':
     main()

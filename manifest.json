@@ -34,12 +34,12 @@
   },
   "python-flask": {
     "name": "Flask",
-    "sdk": "sdks/python",
-    "documentation": "sdks/akka-http/Readme.md",
+    "sdk": "sdks/python-flask",
+    "documentation": "sdks/python-flask/README.md",
     "test": "subjects/python/flask",
-    "status": "development",
-    "current-version": "0.1.0",
-    "link": "https://mvnrepository.com/artifact/com.useoptic/document-akka-http_2.12/0.2.0",
+    "status": "production",
+    "current-version": "0.1.3",
+    "link": "https://pypi.org/project/optic-document-flask/",
     "supported-targets": "10.x",
     "author": "opticdev"
   }

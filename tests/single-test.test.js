@@ -12,7 +12,7 @@ if (sdkId) {
 	([sdkId]).forEach(env => {
 		describe(env, function () {
 			const testEnv = getEnv(env)
-			// sharedObservationsTest(testEnv)
+			sharedObservationsTest(testEnv)
 			echoServerImplementationTests(testEnv)
 		})
 	})
