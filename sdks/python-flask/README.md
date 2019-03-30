@@ -17,16 +17,8 @@ We like performing this check within the block where we setup our test config, b
 from optic import OpticDocumentingMiddleware
 
 def create_app(test_config=None):
-
-    # Setup Code...
-
-    if test_config is None:
-        # load the instance config, if it exists, when not testing
-        app.config.from_pyfile('config.py', silent=True)
-    else:
-        if 'OPTIC_SERVER_LISTENING' in os.environ:
-            OpticDocumentingMiddleware(app)
-        app.config.update(test_config)
+    if 'OPTIC_SERVER_LISTENING' in os.environ:
+        OpticDocumentingMiddleware(app)
     return app
 ``` 
 
