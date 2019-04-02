@@ -107,9 +107,9 @@ Once you've created a library for the middleware you'll want to have your test e
 
 ## Add a ReadMe
 A quick readme goes a long way. Include a reference to your readme in `manifest.json` to have it synced with `docs.useoptic.com`. Here are a few examples to copy: 
-- [Express JS](/sdks/node-express/Readme.md)  
-- [Rails](/sdks/ruby-rack/README.md)  
-- [Flask](/sdks/python-flask/README.md)  
+- [Express JS](/integrations/node-express/Readme.md)  
+- [Rails](/integrations/ruby-rack/README.md)  
+- [Flask](/integrations/python-flask/README.md)  
 
 
 # Create a PR

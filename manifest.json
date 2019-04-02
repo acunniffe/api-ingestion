@@ -1,8 +1,8 @@
 {
   "node-express": {
     "name": "Express JS",
-    "sdk": "sdks/node-express",
-    "documentation": "sdks/node-express/Readme.md",
+    "integration": "integrations/node-express",
+    "documentation": "integrations/node-express/Readme.md",
     "test": "subjects/node/express",
     "status": "production",
     "current-version": "0.2.0",
@@ -12,8 +12,8 @@
   },
   "ruby-rails": {
     "name": "Ruby Rails",
-    "sdk": "sdks/ruby-rack",
-    "documentation": "sdks/ruby-rack/README.md",
+    "integration": "integrations/ruby-rack",
+    "documentation": "integrations/ruby-rack/README.md",
     "test": "subjects/ruby/rails",
     "status": "production",
     "current-version": "0.2.0",
@@ -23,8 +23,8 @@
   },
   "scala-akka-http": {
     "name": "Akka HTTP Scala",
-    "sdk": "sdks/akka-http",
-    "documentation": "sdks/akka-http/Readme.md",
+    "integration": "integrations/akka-http",
+    "documentation": "integrations/akka-http/Readme.md",
     "test": "subjects/scala/akka_http",
     "status": "production",
     "current-version": "0.2.0",
@@ -34,8 +34,8 @@
   },
   "python-flask": {
     "name": "Flask",
-    "sdk": "sdks/python-flask",
-    "documentation": "sdks/python-flask/README.md",
+    "integration": "integrations/python-flask",
+    "documentation": "integrations/python-flask/README.md",
     "test": "subjects/python/flask",
     "status": "production",
     "current-version": "0.1.3",
