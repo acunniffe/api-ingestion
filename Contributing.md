@@ -112,5 +112,5 @@ A quick readme goes a long way. Include a reference to your readme in `manifest.
 - [Flask](/integrations/python-flask/README.md)  
 
 
-# Create a PR
+## Create a PR
 When all the tests pass for your new API Integration, create a PR. We'll review it ASAP, get it merged in and send you $150 Amazon giftcard, and some Optic swag as a thank you from the community :)  
