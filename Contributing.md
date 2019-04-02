@@ -7,7 +7,7 @@ Most of the popular API frameworks don't make documentation a first-class concer
  
 If you believe in the vision outlined above, you can help bring about that reality by building API Framework Integrations that conform to this specification. It takes <3 hrs, you'll be fully supported by our core maintainers and once you finish everybody using `Framework X` will be able to document their APIs with a single command. 
 
-Let's get started! Make a new branch called `integration-{framewoork}-development`! 
+Let's get started! Make a new branch called `integration-{framewoork}-development`
 
 ## Development Overview
 
