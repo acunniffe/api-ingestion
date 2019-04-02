@@ -5,7 +5,8 @@
   "main": "tests/test-entry.test.js",
   "scripts": {
     "test": "find ./tests -name '*.test.js' | xargs mocha -R spec --timeout 30000 --exit",
-    "testOnly": "find ./tests -name 'single-test.test.js' | xargs mocha -R spec --timeout 30000 --exit"
+    "testOnly": "find ./tests -name 'single-test.test.js' | xargs mocha -R spec --timeout 30000 --exit",
+    "testOnlyEchoServer": "find ./tests -name 'single-test-echo-server.test.js' | xargs mocha -R spec --timeout 30000 --exit"
   },
   "author": "",
   "license": "MIT",
