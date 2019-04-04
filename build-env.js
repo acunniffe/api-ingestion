@@ -1,6 +1,6 @@
 const shell = require('shelljs')
 const path = require('path')
-const waitPort = require('wait-port');
+const waitOn = require('wait-on');
 const {exec} = require('child_process')
 const ip = require('ip')
 
@@ -25,14 +25,26 @@ function buildEnv(name, dir, testPort) {
 			// if (!err) {console.log('Starting docker for '+ containerName)}
 
 			exec(`docker run -p ${testPort}:4000 --add-host=testhost:${hostIp} -d ${containerName}`, {cwd}, (err, stdout) => {
-				// console.log('Container ID ' + stdout)
-				waitPort({host: 'localhost', port: testPort, output: 'silent'})
-					.then((open) => {
-						if (open) {
-							setTimeout(() => resolve({name, dir, testPort}), 5000)
-						} else {
-							reject('port did not open')
-						}
+				if (err) {
+					console.error(err);
+				}
+				console.log(stdout)
+				console.log(`waiting on localhost:${testPort}`)
+				waitOn({
+					resources: [
+						`tcp:${testPort}`
+					],
+					delay: 1000,
+					interval: 1000,
+					window: 1000,
+					timeout: 30000
+				})
+					.then(() => {
+						setTimeout(() => resolve({name, dir, testPort}), 10000)
+					})
+					.catch((err) => {
+						console.error(err);
+						reject('timed out waiting for server')
 					})
 
 			})

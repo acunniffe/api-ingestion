@@ -32,6 +32,17 @@
     "supported-targets": "10.x",
     "author": "opticdev"
   },
+  "java-spring-boot": {
+    "name": "Java Spring Boot",
+    "integration": "integrations/java-spring-boot",
+    "documentation": "integrations/java-spring-boot/README.md",
+    "test": "subjects/java/spring_boot",
+    "status": "development",
+    "current-version": "0.1.0",
+    "link": "",
+    "supported-targets": "2.x",
+    "author": "opticdev"
+  },
   "python-flask": {
     "name": "Flask",
     "integration": "integrations/python-flask",

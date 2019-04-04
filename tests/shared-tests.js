@@ -29,6 +29,9 @@ exports.sharedObservationsTest = (p) => {
 
 		const testMethod = (method, done, r) => {
 			session((done1) => r('/test-endpoint', {method: method}, done1), (samples) => {
+				if (!Array.isArray(samples) || samples.length === 0) {
+					done(new Error('did not get any samples'))
+				}
 				const {request, response} = samples[0]
 				assert(request.method === method.toUpperCase())
 				done()
@@ -58,6 +61,8 @@ exports.sharedObservationsTest = (p) => {
 		it('finds one query parameter', (done) => assertValidEnv((r) => {
 			session((done1) => r.get('/test-endpoint?one=first', {}, done1), (samples) => {
 				const {request, response} = samples[0]
+				console.error('xxx')
+				console.error(request.queryParameters);
 				assert(Object.entries(request.queryParameters).length === 1)
 				assert(request.queryParameters.one === 'first')
 				assert(request.url === '/test-endpoint')
@@ -68,6 +73,8 @@ exports.sharedObservationsTest = (p) => {
 		it('creates array from duplicate keys', (done) => assertValidEnv((r) => {
 			session((done1) => r.get('/test-endpoint?one=first&one=second', {}, done1), (samples) => {
 				const {request, response} = samples[0]
+				console.error('xxx')
+				console.error(request.queryParameters);
 				assert(Object.entries(request.queryParameters).length === 1)
 				assert.deepEqual(request.queryParameters.one, ['first', 'second'])
 				assert(request.url === '/test-endpoint')
