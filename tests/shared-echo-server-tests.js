@@ -31,7 +31,6 @@ exports.echoServerImplementationTests = (p) => {
 				testUrl('/hello/world', 'POST'),
 				testUrl('/test-endpoint', 'POST'),
 				testUrl('/test/123', 'POST'),
-				testUrl('/', 'POST'),
 				testUrl('/any/12/route', 'POST'),
 			]).then((arr) => {
 				assert(arr.every((i) => i))

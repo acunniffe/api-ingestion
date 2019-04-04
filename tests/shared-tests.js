@@ -20,10 +20,10 @@ exports.sharedObservationsTest = (p) => {
 	}
 
 
-	it('could start test server', (done) => assertValidEnv(() => {
-		assert(true)
-		done()
-	}))
+	// it('could start test server', (done) => assertValidEnv(() => {
+	// 	assert(true)
+	// 	done()
+	// }))
 
 	describe('logging service handles request method', () => {
 
