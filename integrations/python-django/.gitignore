@@ -1,4 +1,4 @@
 build/
 optic_document_django.egg-info/
 dist/
-,idea
+.idea
