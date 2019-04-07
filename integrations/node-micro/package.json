@@ -1,0 +1,13 @@
+{
+  "name": "@useoptic/document-node-http",
+  "version": "0.1.6",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^2.3.0"
+  }
+}

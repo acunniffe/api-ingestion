@@ -10,6 +10,16 @@
     "supported-targets": "4.x",
     "author": "opticdev"
   },
+  "node-micro": {
+    "name": "micro",
+    "integration": "integration/node-micro",
+    "documentation": "integration/node-micro/README.md",
+    "test": "subjects/node/micro",
+    "status": "development",
+    "current-version": "0.1.0",
+    "supported-targets": "9.x",
+    "author": "opticdev"
+  },
   "ruby-rails": {
     "name": "Ruby Rails",
     "integration": "integrations/ruby-rack",

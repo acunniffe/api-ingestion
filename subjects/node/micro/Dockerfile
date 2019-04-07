@@ -1,0 +1,9 @@
+FROM node:8
+WORKDIR .
+COPY . .
+RUN npm install
+ENV OPTIC_SERVER_LISTENING=yes
+ENV OPTIC_SERVER_HOST=testhost
+ENV OPTIC_SERVER_PORT=4000
+CMD [ "npm", "start" ]
+
