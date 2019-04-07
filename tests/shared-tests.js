@@ -82,6 +82,7 @@ exports.sharedObservationsTest = (p) => {
 			session((done1) => r.get('/test-endpoint', {headers: {'MyApp': 'Header'}}, done1), (samples) => {
 				const {request, response} = samples[0]
 				assert(request.headers.myapp === 'Header')
+				assert(response.headers.myapp === 'Header')
 				done()
 			})
 		}))
