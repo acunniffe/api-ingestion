@@ -15,7 +15,7 @@
     "integration": "integration/node-micro",
     "documentation": "integration/node-micro/README.md",
     "test": "subjects/node/micro",
-    "status": "development",
+    "status": "production",
     "current-version": "0.1.0",
     "supported-targets": "9.x",
     "author": "opticdev"
