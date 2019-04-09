@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"com.useoptic.document.spring_boot","l":"OpticDocumentingFilter"}]

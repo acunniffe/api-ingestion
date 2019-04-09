@@ -1,0 +1,5 @@
+[0m[[0m[0minfo[0m] [0m[0mPackaging /Users/aidancunniffe/Developer/optic/api-ingestion-end-to-end/integrations/java-springboot/target/document-springboot-0.1.2-sources.jar ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	com/useoptic/document/spring_boot/OpticDocumentingFilter.java[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/aidancunniffe/Developer/optic/api-ingestion-end-to-end/integrations/java-springboot/src/main/java/com/useoptic/document/spring_boot/OpticDocumentingFilter.java[0m
+[0m[[0m[0minfo[0m] [0m[0mDone packaging.[0m

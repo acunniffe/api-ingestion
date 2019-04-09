@@ -1,0 +1,13 @@
+[0m[[0m[0minfo[0m] [0m[0mPackaging /Users/aidancunniffe/Developer/optic/api-ingestion-end-to-end/integrations/java-springboot/target/document-springboot-0.1.2.jar ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	com[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/aidancunniffe/Developer/optic/api-ingestion-end-to-end/integrations/java-springboot/target/classes/com[0m
+[0m[[0m[0mdebug[0m] [0m[0m	com/useoptic/document[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/aidancunniffe/Developer/optic/api-ingestion-end-to-end/integrations/java-springboot/target/classes/com/useoptic/document[0m
+[0m[[0m[0mdebug[0m] [0m[0m	com/useoptic/document/spring_boot[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/aidancunniffe/Developer/optic/api-ingestion-end-to-end/integrations/java-springboot/target/classes/com/useoptic/document/spring_boot[0m
+[0m[[0m[0mdebug[0m] [0m[0m	com/useoptic/document/spring_boot/OpticDocumentingFilter.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/aidancunniffe/Developer/optic/api-ingestion-end-to-end/integrations/java-springboot/target/classes/com/useoptic/document/spring_boot/OpticDocumentingFilter.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	com/useoptic[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/aidancunniffe/Developer/optic/api-ingestion-end-to-end/integrations/java-springboot/target/classes/com/useoptic[0m
+[0m[[0m[0minfo[0m] [0m[0mDone packaging.[0m
