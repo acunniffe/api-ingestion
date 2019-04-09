@@ -27,7 +27,7 @@ test('my endpoint', async t => {
   const url = await listen(service)
   const body = await request(url)
 
-  t.deepEqual(JSON.parse(body).test, 'woot')
+  expect.deepEqual(JSON.parse(body).test, 'woot')
   service.close()
 })
 
