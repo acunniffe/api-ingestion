@@ -3,8 +3,9 @@ import scala.xml.transform.{RewriteRule, RuleTransformer}
 
 name := "document-springboot"
 organization := "com.useoptic"
-version := "0.1.0"
+version := "0.1.2"
 
+crossPaths := false
 scalaVersion := "2.12.8"
 
 libraryDependencies ++= Seq(

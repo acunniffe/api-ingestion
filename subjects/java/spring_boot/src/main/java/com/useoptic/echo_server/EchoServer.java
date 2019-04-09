@@ -1,8 +1,12 @@
 package com.useoptic.echo_server;
 
+import com.useoptic.document.spring_boot.OpticDocumentingFilter;
 import org.apache.commons.io.IOUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,6 +24,23 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 
+import static org.springframework.core.Ordered.LOWEST_PRECEDENCE;
+
+
+@Configuration
+class AppConfig {
+    @Bean
+    public FilterRegistrationBean<OpticDocumentingFilter> filterRegistrationBean() {
+        FilterRegistrationBean<OpticDocumentingFilter> registrationBean = new FilterRegistrationBean<OpticDocumentingFilter>();
+        OpticDocumentingFilter customURLFilter = new OpticDocumentingFilter();
+        registrationBean.setFilter(customURLFilter);
+        registrationBean.addUrlPatterns("/*");
+        registrationBean.setOrder(LOWEST_PRECEDENCE); //set precedence
+        return registrationBean;
+    }
+}
+
+
 @SpringBootApplication
 @Controller
 public class EchoServer {
@@ -30,6 +51,7 @@ public class EchoServer {
         System.out.println("OPTIC_SERVER_HOST: " + System.getenv("OPTIC_SERVER_HOST"));
         System.out.println("OPTIC_SERVER_PORT: " + System.getenv("OPTIC_SERVER_PORT"));
         SpringApplication app = new SpringApplication(EchoServer.class);
+
         app.setDefaultProperties(Collections.singletonMap("server.port", System.getenv("OPTIC_SERVER_PORT")));
         app.run(args);
     }
