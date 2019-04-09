@@ -12,8 +12,8 @@
   },
   "node-micro": {
     "name": "micro",
-    "integration": "integration/node-micro",
-    "documentation": "integration/node-micro/README.md",
+    "integration": "integrations/node-micro",
+    "documentation": "integrations/node-micro/README.md",
     "test": "subjects/node/micro",
     "status": "production",
     "current-version": "0.1.0",
