@@ -1,4 +1,4 @@
-# Optic for Express JS
+# Using Optic with Express JS
 Optic's documenting middleware for Express JS. This package supports APIs written in Javascript, Typescript, or ReasonML and can be used with the testing framework of your choice.  
 
 ## Usage

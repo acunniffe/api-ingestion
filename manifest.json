@@ -21,7 +21,7 @@
     "author": "opticdev"
   },
   "ruby-rails": {
-    "name": "Ruby Rails",
+    "name": "Rails",
     "integration": "integrations/ruby-rack",
     "documentation": "integrations/ruby-rack/README.md",
     "test": "subjects/ruby/rails",

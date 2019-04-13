@@ -1,5 +1,5 @@
-# Optic for micro
-Optic's documenting middleware for [micro](https://github.com/zeit/micro) or any other framework that uses the node http primitives. This package supports APIs written in Javascript, Typescript, or ReasonML and can be used with the testing framework of your choice.  
+# Using Optic with micro
+Optic's documenting middleware for [micro](https://github.com/zeit/micro). This package supports APIs written in Javascript, Typescript, or ReasonML and can be used with the testing framework of your choice.  
 
 ## Usage
 Install as a dev dependency
@@ -32,7 +32,3 @@ test('my endpoint', async t => {
 })
 
 ```   
-
-
-## Next Steps
-Once you've setup the documenting middleware, [review the Optic docs](https://docs.useoptic.com/#/setup/project-setup) to finish setting up Optic for your API 

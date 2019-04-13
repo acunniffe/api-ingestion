@@ -1,7 +1,6 @@
-# Optic for Django  
+# Using Optic with Django  
 
-## Optic Proxy Setup
-Python APIs built in Django are easy to connect to Optic using our custom middleware. In this tutorial we'll show you how to connect the Optic Documenting Middleware to your Django app so that your integration tests document your code as they execute. 
+Python APIs built with Django are easy to connect to Optic using our custom middleware.
 
 ## Add the Middleware to your Project
 Install the Optic Documenting Middleware using pip
@@ -17,6 +16,3 @@ MIDDLEWARE = [
     'optic.DocumentDjango'
 ]
 ``` 
-
-## Using the Middleware in your tests
-The Documenting middleware will document all the requests/responses that your tests run. Since it is integrated at the middleware level there's no need to update any of your tests files or fixtures. 

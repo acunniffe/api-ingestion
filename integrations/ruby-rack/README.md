@@ -1,6 +1,6 @@
 # Using Optic with Rails
 
-Rails projects or those built on top of Rack are easy to connect to Optic using our custom middleware. In this tutorial we'll show you how to connect the Optic Documenting Middleware to your Rack API so that your integration tests document your code as they execute.
+Rails projects or those built on top of Rack are easy to connect to Optic using our custom middleware. 
 
 ## Installation
 
@@ -36,6 +36,3 @@ Rails.application.configure do {
 ``` 
 
 > Note for RSpec users: Optic will only document specs of type :request since only integration tests contain enough data to generate REST docs. Specs of type :controller skip the Rack stack so documentation generated from them would be incomplete.  
-
-## Using the Proxy Fixture
-The Documenting middleware will document all the requests/responses that your tests run. Since it is integrated at the middleware level there's no need to update any of your tests files or fixtures. 
