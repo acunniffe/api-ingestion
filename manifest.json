@@ -63,5 +63,16 @@
     "link": "https://pypi.org/project/optic-document-django/",
     "supported-targets": "10.x",
     "author": "opticdev"
+  },
+  "go-mux": {
+    "name": "Go Mux",
+    "integration": "integrations/go-mux",
+    "documentation": "integrations/go-mux/README.md",
+    "test": "subjects/go/mux",
+    "status": "development",
+    "current-version": "0.1.0",
+    "link": "https://gihub.com/opticdev/api-ingestion/integrations/go-mux",
+    "supported-targets": "1.x",
+    "author": "opticdev"
   }
 }
