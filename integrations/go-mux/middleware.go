@@ -27,19 +27,13 @@ func Middleware(next http.Handler) http.Handler {
 		log.Print("using optic after")
 
 		response := responseWriter.Result()
-		responseBody, responseReadErr := ioutil.ReadAll(response.Body)
 
 		log.Print(response.StatusCode)
-		log.Print(string(responseBody))
 
 		for k, v := range response.Header {
 			log.Print(k)
 			log.Print(v)
 			w.Header()[k] = v
-		}
-		log.Print(responseReadErr)
-		if responseReadErr == nil {
-			_, _ = w.Write(responseBody)
 		}
 		requestBytes, err := httputil.DumpRequest(r, true)
 		if err == nil {
@@ -49,6 +43,11 @@ func Middleware(next http.Handler) http.Handler {
 			if err == nil {
 				logInteraction(parsedReq, response)
 			}
+		}
+		responseBody, responseReadErr := ioutil.ReadAll(response.Body)
+		log.Print(string(responseBody))
+		if responseReadErr == nil {
+			_, _ = w.Write(responseBody)
 		}
 		w.WriteHeader(response.StatusCode)
 	})
