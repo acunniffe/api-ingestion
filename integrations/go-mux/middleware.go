@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"bytes"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"net/http/httptest"
@@ -19,27 +20,37 @@ func Middleware(next http.Handler) http.Handler {
 			next.ServeHTTP(w, r)
 			return
 		}
+		log.Print("using optic")
+		log.Print(r)
+		responseWriter := httptest.NewRecorder()
+		next.ServeHTTP(responseWriter, r)
 
-		requestBytes, err := httputil.DumpRequest(r, true)
+		response := responseWriter.Result()
+		responseBody, responseReadErr := ioutil.ReadAll(response.Body)
 
-		responseRecorder := httptest.NewRecorder()
+		log.Print(response.StatusCode)
+		log.Print(string(responseBody))
 
-		next.ServeHTTP(responseRecorder, r)
-
-		if err == nil {
-			requestReader := bytes.NewReader(requestBytes)
-			parsedReq, err := http.ReadRequest(bufio.NewReader(requestReader))
-			if err == nil {
-				logInteraction(parsedReq, responseRecorder.Result())
-			}
-		}
-
-		for k, v := range responseRecorder.HeaderMap {
-		    log.Print(k)
+		w.WriteHeader(response.StatusCode)
+		for k, v := range response.Header {
+			log.Print(k)
+			log.Print(v)
 			w.Header()[k] = v
 		}
-		w.WriteHeader(responseRecorder.Code)
-		_, _ = responseRecorder.Result().Body.WriteTo(w)
+		log.Print(responseReadErr)
+		if responseReadErr == nil {
+			_, _ = w.Write(responseBody)
+		}
+
+		requestBytes, err := httputil.DumpRequest(r, true)
+		if err == nil {
+			requestReader := bytes.NewReader(requestBytes)
+
+			_, err := http.ReadRequest(bufio.NewReader(requestReader))
+			if err == nil {
+				//logInteraction(parsedReq, response)
+			}
+		}
 	})
 }
 
