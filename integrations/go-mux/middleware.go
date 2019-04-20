@@ -35,10 +35,11 @@ func Middleware(next http.Handler) http.Handler {
 		}
 
 		for k, v := range responseRecorder.HeaderMap {
+		    log.Print(k)
 			w.Header()[k] = v
 		}
 		w.WriteHeader(responseRecorder.Code)
-		_, _ = responseRecorder.Body.WriteTo(w)
+		_, _ = responseRecorder.Result().Body.WriteTo(w)
 	})
 }
 

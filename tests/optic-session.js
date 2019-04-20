@@ -1,14 +1,15 @@
-const LoggingServer = require('@useoptic/core/build/src/logging-server').LoggingServer
-const {exec} = require('child_process')
+const {LoggingServer} = require('@useoptic/core/build/src/logging-server');
+const util = require('util');
 
 module.exports = (block, callback) => {
 
-	const loggingServer = new LoggingServer()
+	const loggingServer = new LoggingServer();
 
-	const samples = []
+	const samples = [];
 
 	loggingServer.on('sample', (s) => {
-		samples.push(s)
+		console.log(util.inspect(s, {colors: true, depth: 7}));
+		samples.push(s);
 	});
 
 	loggingServer.start({
@@ -16,14 +17,20 @@ module.exports = (block, callback) => {
 		responseLoggingServerPort: 30335,
 	})
 		.then(() => {
-			exec('ping localhost:30334')
-			return new Promise((resolve, reject) => block(resolve))
+			return new Promise((resolve, reject) => {
+				block(resolve);
+			});
 		})
 		.then(() => {
 			setTimeout(() => {
-				loggingServer.stop()
-				callback(samples)
-			}, 300)
+				loggingServer.stop();
+				console.log(util.inspect(samples, {colors: true, depth: 7}));
+				callback(samples);
+			}, 3000);
 		})
+		.catch(e => {
+			console.error(e);
+			throw e;
+		});
 
-}
+};

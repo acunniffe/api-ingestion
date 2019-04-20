@@ -8,16 +8,20 @@
     "testOnly": "find ./tests -name 'single-test.test.js' | xargs mocha -R spec --timeout 30000 --exit",
     "testOnlyEchoServer": "find ./tests -name 'single-test-echo-server.test.js' | xargs mocha -R spec --timeout 30000 --exit"
   },
+  "engines": {
+    "node": ">=10.0"
+  },
+  "engineStrict": true,
   "author": "",
   "license": "MIT",
   "dependencies": {
     "@useoptic/core": "^0.1.3-alpha.17",
-    "global-request-logger": "^0.1.1",
+    "debug": "^4.1.1",
     "ip": "^1.1.5",
     "kill-port": "^1.3.2",
     "mocha": "^6.0.2",
     "request": "^2.88.0",
-    "shelljs": "^0.8.3",
-    "wait-port": "^0.2.2"
+    "wait-port": "^0.2.2",
+    "global-request-logger": "^0.1.1"
   }
 }
