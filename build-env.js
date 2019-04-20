@@ -1,6 +1,6 @@
 const path = require('path');
 const waitPort = require('wait-port');
-const {exec} = require('child_process');
+const {spawn, exec} = require('child_process');
 const ip = require('ip');
 const debug = require('debug');
 
@@ -36,18 +36,25 @@ function buildEnv(name, dir, testPort) {
 				return reject(err);
 			}
 
-			exec(`docker run -p ${testPort}:4000 --add-host=testhost:${hostIp} -d ${containerName}`, {cwd}, (err, stdout) => {
-				logger('Container ID ' + stdout);
-				waitPort({host: 'localhost', port: testPort, output: 'silent'})
-					.then((open) => {
-						if (open) {
-							logger('port open, waiting for server to start');
-							setTimeout(() => resolve({name, dir, testPort}), 10000);
-						} else {
-							reject('port did not open');
-						}
-					});
+			const child = spawn(`docker`, [`run`, `-p`, `${testPort}:4000`, `--add-host=testhost:${hostIp}`, `${containerName}`], {
+				cwd,
+			});
 
+			waitPort({host: 'localhost', port: testPort, output: 'silent'})
+				.then((open) => {
+					if (open) {
+						logger('port open, waiting for server to start');
+						setTimeout(() => resolve({name, dir, testPort}), 10000);
+					} else {
+						reject('port did not open');
+					}
+				});
+
+			child.stdout.on('data', (e) => {
+				logger(e.toString());
+			});
+			child.stderr.on('data', (e) => {
+				logger(e.toString());
 			});
 
 		});

@@ -20,10 +20,11 @@ func Middleware(next http.Handler) http.Handler {
 			next.ServeHTTP(w, r)
 			return
 		}
-		log.Print("using optic")
+		log.Print("using optic before")
 		log.Print(r)
 		responseWriter := httptest.NewRecorder()
 		next.ServeHTTP(responseWriter, r)
+		log.Print("using optic after")
 
 		response := responseWriter.Result()
 		responseBody, responseReadErr := ioutil.ReadAll(response.Body)
@@ -31,7 +32,6 @@ func Middleware(next http.Handler) http.Handler {
 		log.Print(response.StatusCode)
 		log.Print(string(responseBody))
 
-		w.WriteHeader(response.StatusCode)
 		for k, v := range response.Header {
 			log.Print(k)
 			log.Print(v)
@@ -41,7 +41,7 @@ func Middleware(next http.Handler) http.Handler {
 		if responseReadErr == nil {
 			_, _ = w.Write(responseBody)
 		}
-
+		w.WriteHeader(response.StatusCode)
 		requestBytes, err := httputil.DumpRequest(r, true)
 		if err == nil {
 			requestReader := bytes.NewReader(requestBytes)
@@ -114,6 +114,7 @@ func logInteraction(req *http.Request, res *http.Response) {
 			Header: res.Header,
 			URL:    responseUrl,
 		}
+		log.Print(res.Header)
 		_, _ = client.Do(responseLog)
 	} else {
 		log.Print("optic error")
