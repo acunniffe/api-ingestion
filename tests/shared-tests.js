@@ -158,8 +158,8 @@ exports.sharedObservationsTest = (p) => {
 
 	});
 
-	describe.only('logging service handles response body', () => {
-		xit('empty when not set', (done) => assertValidEnv((r) => {
+	describe('logging service handles response body', () => {
+		it('empty when not set', (done) => assertValidEnv((r) => {
 			session((done1) => r.post('/test-endpoint', {}, done1), (samples) => {
 				const {request, response} = samples[0];
 				assert.equal(Object.entries(response.body).length, 0);
@@ -175,7 +175,7 @@ exports.sharedObservationsTest = (p) => {
 			});
 		}));
 
-		xit('works when long json', (done) => assertValidEnv((r) => {
+		it('works when long json', (done) => assertValidEnv((r) => {
 			session((done1) => r.post('/test-endpoint', {json: longJson}, done1), (samples) => {
 				const {request, response} = samples[0];
 				assert.deepEqual(response.body, longJson);

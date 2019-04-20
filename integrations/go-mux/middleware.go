@@ -41,7 +41,6 @@ func Middleware(next http.Handler) http.Handler {
 		if responseReadErr == nil {
 			_, _ = w.Write(responseBody)
 		}
-		w.WriteHeader(response.StatusCode)
 		requestBytes, err := httputil.DumpRequest(r, true)
 		if err == nil {
 			requestReader := bytes.NewReader(requestBytes)
@@ -51,6 +50,7 @@ func Middleware(next http.Handler) http.Handler {
 				logInteraction(parsedReq, response)
 			}
 		}
+		w.WriteHeader(response.StatusCode)
 	})
 }
 
