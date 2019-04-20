@@ -48,7 +48,7 @@ func Middleware(next http.Handler) http.Handler {
 
 			_, err := http.ReadRequest(bufio.NewReader(requestReader))
 			if err == nil {
-				//logInteraction(parsedReq, response)
+				logInteraction(parsedReq, response)
 			}
 		}
 	})
