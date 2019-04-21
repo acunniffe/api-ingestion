@@ -8,6 +8,7 @@ module.exports = (block, callback) => {
 	const samples = [];
 
 	loggingServer.on('sample', (s) => {
+		console.log('sample');
 		console.log(util.inspect(s, {colors: true, depth: 7}));
 		samples.push(s);
 	});
@@ -18,12 +19,16 @@ module.exports = (block, callback) => {
 	})
 		.then(() => {
 			return new Promise((resolve, reject) => {
+				console.log('running session task')
 				block(resolve);
 			});
 		})
 		.then(() => {
+			console.log('waiting to stop')
 			setTimeout(() => {
+				console.log('stopping')
 				loggingServer.stop();
+				console.log('samples');
 				console.log(util.inspect(samples, {colors: true, depth: 7}));
 				callback(samples);
 			}, 3000);

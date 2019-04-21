@@ -3,7 +3,6 @@ package main
 import (
 	"github.com/gorilla/mux"
 	optic "github.com/opticdev/api-ingestion/integrations/go-mux"
-	"io"
 	"log"
 	"net/http"
 	"os"
@@ -31,17 +30,10 @@ func EchoHandler(writer http.ResponseWriter, request *http.Request) {
 		}
 	}
 
-	log.Print("copying request headers")
-	for k, v := range request.Header {
-		log.Print(k)
-		log.Print(v)
-		writer.Header()[k] = v
-	}
-	log.Print("copying request body")
-	_, err := io.Copy(writer, request.Body)
-	if err != nil {
-		log.Print(err)
-	}
-	writer.WriteHeader(statusOverride)
+	optic.WriteResponse(&http.Response{
+		StatusCode: statusOverride,
+		Body: request.Body,
+		Header: request.Header,
+	}, writer)
 	log.Print("echo handler after")
 }
