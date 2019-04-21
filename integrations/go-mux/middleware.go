@@ -75,13 +75,13 @@ func WriteResponse(response *http.Response, w http.ResponseWriter) {
 		w.Header()[k] = v
 	}
 
+	w.WriteHeader(response.StatusCode)
 	bytesWritten, err := io.Copy(w, response.Body)
 	if err != nil {
 		log.Print(err)
 		return
 	}
 	log.Printf("body: %d bytes written", bytesWritten)
-	w.WriteHeader(response.StatusCode)
 }
 
 func isWsHandshakeRequest(req *http.Request) bool {
