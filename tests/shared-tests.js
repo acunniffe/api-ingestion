@@ -30,13 +30,13 @@ exports.sharedObservationsTest = (p) => {
 			});
 		};
 
-		xit('get', (done) => assertValidEnv((r) => testMethod('get', done, r)));
+		it('get', (done) => assertValidEnv((r) => testMethod('get', done, r)));
 		it('post', (done) => assertValidEnv((r) => testMethod('post', done, r)));
 		it('put', (done) => assertValidEnv((r) => testMethod('put', done, r)));
-		xit('delete', (done) => assertValidEnv((r) => testMethod('delete', done, r)));
-		xit('patch', (done) => assertValidEnv((r) => testMethod('patch', done, r)));
+		it('delete', (done) => assertValidEnv((r) => testMethod('delete', done, r)));
+		it('patch', (done) => assertValidEnv((r) => testMethod('patch', done, r)));
 		it.skip('head', (done) => assertValidEnv((r) => testMethod('head', done, r)));
-		xit('options', (done) => assertValidEnv((r) => testMethod('options', done, r)));
+		it('options', (done) => assertValidEnv((r) => testMethod('options', done, r)));
 
 	});
 
@@ -158,8 +158,8 @@ exports.sharedObservationsTest = (p) => {
 
 	});
 
-	describe.only('logging service handles response body', () => {
-		xit('empty when not set', (done) => assertValidEnv((r) => {
+	describe('logging service handles response body', () => {
+		it('empty when not set', (done) => assertValidEnv((r) => {
 			session((done1) => r.post('/test-endpoint', {}, done1), (samples) => {
 				const {request, response} = samples[0];
 				assert.equal(Object.entries(response.body).length, 0);

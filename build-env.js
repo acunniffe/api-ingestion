@@ -11,15 +11,13 @@ const globalLog = require('global-request-logger');
 globalLog.initialize();
 
 globalLog.on('success', function (request, response) {
-	console.log('SUCCESS');
-	console.log('Request', request);
-	console.log('Response', response);
+	logger('Request', request);
+	logger('Response', response);
 });
 
 globalLog.on('error', function (request, response) {
-	console.log('ERROR');
-	console.log('Request', request);
-	console.log('Response', response);
+	logger('Request', request);
+	logger('Response', response);
 });
 
 function buildEnv(name, dir, testPort) {

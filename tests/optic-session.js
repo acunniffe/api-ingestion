@@ -1,5 +1,7 @@
 const {LoggingServer} = require('@useoptic/core/build/src/logging-server');
 const util = require('util');
+const debug = require('debug');
+const logger = debug('optic');
 
 module.exports = (block, callback) => {
 
@@ -8,8 +10,8 @@ module.exports = (block, callback) => {
 	const samples = [];
 
 	loggingServer.on('sample', (s) => {
-		console.log('sample');
-		console.log(util.inspect(s, {colors: true, depth: 7}));
+		logger('sample');
+		logger(util.inspect(s, {colors: true, depth: 7}));
 		samples.push(s);
 	});
 
@@ -19,19 +21,19 @@ module.exports = (block, callback) => {
 	})
 		.then(() => {
 			return new Promise((resolve, reject) => {
-				console.log('running session task')
+				logger('running session task');
 				block(resolve);
 			});
 		})
 		.then(() => {
-			console.log('waiting to stop')
+			logger('waiting to stop');
 			setTimeout(() => {
-				console.log('stopping')
+				logger('stopping');
 				loggingServer.stop();
-				console.log('samples');
-				console.log(util.inspect(samples, {colors: true, depth: 7}));
+				logger('samples');
+				logger(util.inspect(samples, {colors: true, depth: 7}));
 				callback(samples);
-			}, 3000);
+			}, 300);
 		})
 		.catch(e => {
 			console.error(e);
