@@ -20,7 +20,7 @@ func main() {
 }
 
 func EchoHandler(writer http.ResponseWriter, request *http.Request) {
-	log.Print("echo handler before")
+	//log.Print("echo handler before")
 	statusOverrideString := request.Header.Get("return-status")
 	statusOverride := int(200)
 	if len(statusOverrideString) > 0 {
@@ -35,5 +35,5 @@ func EchoHandler(writer http.ResponseWriter, request *http.Request) {
 		Body: request.Body,
 		Header: request.Header,
 	}, writer)
-	log.Print("echo handler after")
+	//log.Print("echo handler after")
 }

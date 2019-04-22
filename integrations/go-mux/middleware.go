@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"net/http/httptest"
 	"net/url"
@@ -42,8 +41,8 @@ func Middleware(next http.Handler) http.Handler {
 			next.ServeHTTP(w, r)
 			return
 		}
-		log.Print("optic: before")
-		log.Print(r)
+		//log.Print("optic: before")
+		//log.Print(r)
 
 		requestBody, requestBodyCopyReader := WrapReader(r.Body)
 		requestCopy := r
@@ -52,36 +51,36 @@ func Middleware(next http.Handler) http.Handler {
 
 		next.ServeHTTP(responseRecorder, requestCopy)
 
-		log.Print("optic: after")
+		//log.Print("optic: after")
 		response := responseRecorder.Result()
 		responseBody, responseBodyCopyReader := WrapReader(response.Body)
 		response.Body = responseBody
-		log.Print("optic: before replaying response")
+		//log.Print("optic: before replaying response")
 		WriteResponse(response, w)
-		log.Print("optic: after replaying response")
+		//log.Print("optic: after replaying response")
 
-		log.Print("optic: before logging request and response")
+		//log.Print("optic: before logging request and response")
 		logInteraction(requestCopy, requestBodyCopyReader, response, responseBodyCopyReader)
-		log.Print("optic: after logging request and response")
+		//log.Print("optic: after logging request and response")
 	})
 }
 
 func WriteResponse(response *http.Response, w http.ResponseWriter) {
-	log.Printf("optic: writing response (%d)", response.StatusCode)
+	//log.Printf("optic: writing response (%d)", response.StatusCode)
 
 	for k, v := range response.Header {
-		log.Print(k)
-		log.Print(v)
+		//log.Print(k)
+		//log.Print(v)
 		w.Header()[k] = v
 	}
 
 	w.WriteHeader(response.StatusCode)
-	bytesWritten, err := io.Copy(w, response.Body)
+	_, err := io.Copy(w, response.Body)
 	if err != nil {
-		log.Print(err)
+		//log.Print(err)
 		return
 	}
-	log.Printf("body: %d bytes written", bytesWritten)
+	//log.Printf("body: %d bytes written", bytesWritten)
 }
 
 func isWsHandshakeRequest(req *http.Request) bool {
@@ -113,12 +112,12 @@ func logInteraction(req *http.Request, requestBody io.ReadCloser, res *http.Resp
 	if err == nil {
 		err := logResponse(interactionId, res, responseBody)
 		if err != nil {
-			log.Print("optic error logging response")
-			log.Print(fmt.Sprint(err))
+			//log.Print("optic error logging response")
+			//log.Print(fmt.Sprint(err))
 		}
 	} else {
-		log.Print("optic error logging request")
-		log.Print(fmt.Sprint(err))
+		//log.Print("optic error logging request")
+		//log.Print(fmt.Sprint(err))
 	}
 }
 
@@ -141,8 +140,8 @@ func logResponse(interactionId string, res *http.Response, responseBody io.ReadC
 		URL:    responseUrl,
 	}
 
-	log.Print("updated request for logging response")
-	log.Print(res.Header)
+	//log.Print("updated request for logging response")
+	//log.Print(res.Header)
 
 	_, err = client.Do(responseLog)
 	return err;
@@ -163,15 +162,15 @@ func logRequest(req *http.Request, requestBody io.ReadCloser) (interactionId str
 		Header: req.Header,
 	}
 	logRequestRequest.URL = requestUrl
-	log.Print("updated request for logging request")
-	log.Print(logRequestRequest)
+	//log.Print("updated request for logging request")
+	//log.Print(logRequestRequest)
 	interactionResponse, err := client.Do(logRequestRequest)
 	if err == nil {
 		buffer := new(bytes.Buffer)
 		_, _ = buffer.ReadFrom(interactionResponse.Body)
 
 		interactionId := buffer.String()
-		log.Printf("interactionID %s", interactionId)
+		//log.Printf("interactionID %s", interactionId)
 		return interactionId, nil
 	}
 	return "", err
